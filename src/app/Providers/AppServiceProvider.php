@@ -26,9 +26,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // Passport::$registersJsonApiRoutes = true;
-
-        // Passport::ignoreRoutes();
+        // Ignore Passport's default routes as this app only for personal access token authentication
+        Passport::ignoreRoutes();
     }
 
     /**
@@ -36,14 +35,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Set Passport's token expiration times
-        Passport::tokensExpireIn(CarbonInterval::days(15));
-        Passport::refreshTokensExpireIn(CarbonInterval::days(30));
-        Passport::personalAccessTokensExpireIn(CarbonInterval::days(30));
-
-        // Registetr authorization view for OAuth
-        Passport::authorizationView('auth.oauth.authorize');
-
         // Register a global Gate policy to allow all abilities for administrators
         // This allows administrators to bypass all authorization checks
         Gate::before(function (User $user, string $ability) {

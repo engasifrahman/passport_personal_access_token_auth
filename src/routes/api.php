@@ -7,7 +7,6 @@ use App\Http\Controllers\API\v1\Auth\LogoutController;
 use App\Http\Controllers\API\v1\Auth\RegisterController;
 use App\Http\Controllers\API\v1\Auth\ResetPasswordController;
 use App\Http\Controllers\API\v1\Auth\ForgotPasswordController;
-use App\Http\Controllers\API\v1\OAuth\AuthCodeGrantController;
 use App\Http\Controllers\API\v1\Auth\EmailVerificationController;
 
 Route::prefix('/v1')->group(function () {

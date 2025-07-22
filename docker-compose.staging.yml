@@ -1,0 +1,36 @@
+services:
+  app:
+    container_name: app
+    build:
+      args:
+        user: asif
+        uid: 1412
+      context: .
+      dockerfile: /docker/php-fpm/Dockerfile
+    volumes:
+      - ./src:/var/www/
+      - ./src/.env.staging:/var/www/.env
+    ports:
+      - "8080:80"
+    env_file:
+      - ./src/.env.staging
+    environment:
+      - APP_ENV=staging
+    working_dir: /var/www/
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    environment:
+      - NGINX_HOST=app
+      - NGINX_PORT=9000
+    ports:
+      - "8000:80"
+    volumes:
+      - ./src:/var/www/
+      - ./docker/nginx/templates:/etc/nginx/templates
+    depends_on:
+      - app  
+    restart: unless-stopped
+  
