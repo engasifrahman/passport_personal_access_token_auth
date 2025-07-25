@@ -41,7 +41,8 @@ Route::prefix('/v1')->group(function () {
             });
         });
 
-        Route::post('/logout', LogoutController::class);
+        Route::post('/logout', [LogoutController::class, 'logout']);
+        Route::post('/logout-all', [LogoutController::class, 'logoutAll']);
     });
 });
 
