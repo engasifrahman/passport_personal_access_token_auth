@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Models\User;
-use Carbon\CarbonInterval;
 use Illuminate\Support\Carbon;
 use Laravel\Passport\Passport;
 use App\Mixins\ApiResponseMacros;
